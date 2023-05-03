@@ -83,6 +83,24 @@ def get_text_messages(message):
                 markup.add(btn)
                 messag =  str(i['datt']) + "\n" + " " + "\n" + i['title'] + "\n" + " " + "\n" + "Подробнее " + i['link']
                 bot.send_photo(message.from_user.id, i['photo'], messag)
+    elif message.text == 'Неделя':
+        nov= news(7)
+        if nov == []:
+            markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            btn3 = types.KeyboardButton('За сутки')
+            btn5 = types.KeyboardButton('Неделя')
+            btn6 = types.KeyboardButton('За месяц')
+            btn4 = types.KeyboardButton('Всё время ')
+            btnlng = types.KeyboardButton('Вернутся к выбору языка/back to language choosing')
+            markup2.add(btnlng, btn3, btn5, btn6, btn4)
+            bot.send_message(message.from_user.id, "За это период новостей не было", reply_markup=markup2)
+        else:
+            for i in nov:
+                markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                btn = types.KeyboardButton('Главная страница')
+                markup.add(btn)
+                messag =  str(i['datt']) + "\n" + " " + "\n" + i['title'] + "\n" + " " + "\n" + "Подробнее " + i['link']
+                bot.send_photo(message.from_user.id, i['photo'], messag)
 
 
     # отправляем новость в Telegram bot
