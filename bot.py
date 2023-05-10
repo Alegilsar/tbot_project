@@ -17,17 +17,26 @@ def start(message):
     markup.add(btn1,btn2)
     bot.send_message(message.from_user.id, "Выберите язык/Choose your language", reply_markup=markup)
 
+def categotia(url,value):
+    url = str(url)
+    params = {'category': value}
 
+    response = requests.get(url, params=params)
 
-def news(d):
-    url = 'https://physics.itmo.ru/ru/news'
+    if response.status_code == 200:
+        # обработка полученных данных
+        return response.text
+    else:
+        print(f'Ошибка {response.status_code}: {response.reason}')
+def news(d, url, value):
     spisok = []
-
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-
+    if value == "0":
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+    else:
+        ret = categotia(url, value)
+        soup = BeautifulSoup(ret, 'html.parser')
     news_list = soup.find_all('div', {'class': 'col-md-6 views-row'})
-    print(news_list)
     site_utl='https://physics.itmo.ru'
     for news in news_list:
         title = news.find('span').text
@@ -50,7 +59,10 @@ def news(d):
             slovo['photo'] = photo
             slovo['datt'] = datt
             spisok.append(slovo)
+
     return spisok
+
+
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
