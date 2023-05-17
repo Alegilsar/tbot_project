@@ -116,6 +116,7 @@ def get_text_messages(message):
         btn10 = types.KeyboardButton('Все новости факультета')
         btn11 = types.KeyboardButton('Наука')
         btn12 = types.KeyboardButton('Разработки')
+        btn13 = types.KeyboardButton('Разработки')
         btnlng = types.KeyboardButton('Back to language choosing')
         markup2.add(btnlng, btn10, btn11, btn12)
         bot.send_message(message.from_user.id, "Выберите категорию ", reply_markup=markup2)
@@ -164,6 +165,8 @@ def get_text_messages(message):
         novosti(7, english_url, "0")
     elif message.text == 'For day':
         novosti(1, english_url, "0")
+    elif message.text == 'Наука':
+        novosti(365,russian_url,399)
 
 
 text_start = """
