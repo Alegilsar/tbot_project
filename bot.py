@@ -78,40 +78,38 @@ def get_text_messages(message):
         if url == english_url:
             if get == []:
                 markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                btn3 = types.KeyboardButton('For day')
-                btn5 = types.KeyboardButton('For week')
-                btn6 = types.KeyboardButton('For month')
+                btn3 = types.KeyboardButton('For a week')
+                btn5 = types.KeyboardButton('For a month')
+                btn6 = types.KeyboardButton('For a year')
                 btnlng = types.KeyboardButton('Вернуться к выбору языка')
                 markup2.add(btnlng, btn3, btn5, btn6)
                 bot.send_message(message.from_user.id, "There are no news in this period", reply_markup=markup2)
             else:
                 for i in get:
                     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                    btn = types.KeyboardButton("Main")
+                    btn = types.KeyboardButton("To the main page")
                     markup.add(btn)
                     messag = str(i['datt']) + "\n" + " " + "\n" + i['title'] + "\n" + " " + "\n" + "Подробнее " + i[
                         'link']
-                    bot.send_photo(message.from_user.id, i['photo'], messag)
+                    bot.send_photo(message.from_user.id, i['photo'], messag, reply_markup=markup)
         else:
             if get == []:
                 markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                btn3 = types.KeyboardButton('За сутки')
-                btn5 = types.KeyboardButton('Неделя')
-                btn6 = types.KeyboardButton('За месяц')
+                btn3 = types.KeyboardButton('За неделю')
+                btn5 = types.KeyboardButton('За месяц')
+                btn6 = types.KeyboardButton('За год')
                 btnlng = types.KeyboardButton('Back to language choosing')
                 markup2.add(btnlng, btn3, btn5, btn6)
                 bot.send_message(message.from_user.id, "За это период новостей не было", reply_markup=markup2)
             else:
                 for i in get:
                     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                    btn = types.KeyboardButton('Главная страница')
+                    btn = types.KeyboardButton('На главную страницу')
                     markup.add(btn)
                     messag = str(i['datt']) + "\n" + " " + "\n" + i['title'] + "\n" + " " + "\n" + "Подробнее " + i['link']
-                    bot.send_photo(message.from_user.id, i['photo'], messag)
+                    bot.send_photo(message.from_user.id, i['photo'], messag, reply_markup=markup)
 
-
-
-    if message.text == 'Русский':
+    if message.text == 'Русский' or message.text == "На главную страницу":
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn10 = types.KeyboardButton('Все новости факультета')
         btn11 = types.KeyboardButton('Наука')
@@ -125,45 +123,44 @@ def get_text_messages(message):
 
     elif message.text == 'Все новости факультета':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn3 = types.KeyboardButton('За сутки')
-        btn5 = types.KeyboardButton('Неделя')
+        btn3 = types.KeyboardButton('За год')
+        btn5 = types.KeyboardButton('За неделю')
         btn6 = types.KeyboardButton('За месяц')
-        btnlng = types.KeyboardButton('На главную страницу')
+        btnlng = types.KeyboardButton('Back to language choosing')
         markup2.add(btnlng, btn3, btn5, btn6)
         bot.send_message(message.from_user.id, "Выберите период времени ", reply_markup=markup2)
-    elif message.text == 'За месяц':
+    elif message.text == 'За год':
         novosti(365, russian_url, "0")
-    elif message.text == 'Неделя':
-
+    elif message.text == 'За неделю':
         novosti(7, russian_url, "0")
-    elif message.text == 'За сутки':
-        novosti(1, russian_url, "0")
-    elif message.text == 'English':
+    elif message.text == 'За месяц':
+        novosti(30, russian_url, "0")
+    elif message.text == 'English' or message.text == 'To the main page':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn10 = types.KeyboardButton('Any news')
+        btn10 = types.KeyboardButton('All news')
         btn11 = types.KeyboardButton('Achievement')
         btn12 = types.KeyboardButton('Conferences')
         btn13 = types.KeyboardButton('Developments')
         btn14 = types.KeyboardButton('Opportunities')
         btn15 = types.KeyboardButton('Science')
-        btnlng = types.KeyboardButton('Back to language choosing')
+        btnlng = types.KeyboardButton('Вернуться к выбору языка')
         markup2.add(btnlng, btn10, btn11, btn12,btn13,btn14,btn15)
-        bot.send_message(message.from_user.id, "Выберите категорию ", reply_markup=markup2)
-    elif message.text == 'Any news':
+        bot.send_message(message.from_user.id, "Сhoose the category ", reply_markup=markup2)
+    elif message.text == 'All news':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn3 = types.KeyboardButton('For mont')
-        btn5 = types.KeyboardButton('For week')
-        btn6 = types.KeyboardButton('For day')
-        btnlng = types.KeyboardButton('Back to the main')
+        btn3 = types.KeyboardButton('For a month')
+        btn5 = types.KeyboardButton('For a week')
+        btn6 = types.KeyboardButton('For a year')
+        btnlng = types.KeyboardButton('Вернуться к выбору языка')
         markup2.add(btnlng, btn3, btn5, btn6)
-        bot.send_message(message.from_user.id, "Выберите период времени ", reply_markup=markup2)
+        bot.send_message(message.from_user.id, "Choose the duration", reply_markup=markup2)
 
-    elif message.text == 'For month':
+    elif message.text == 'For a month':
         novosti(31, english_url, "0")
-    elif message.text == 'For week':
+    elif message.text == 'For a week':
         novosti(7, english_url, "0")
-    elif message.text == 'For day':
-        novosti(1, english_url, "0")
+    elif message.text == 'For a year':
+        novosti(365, english_url, "0")
 
 
 text_start = """
