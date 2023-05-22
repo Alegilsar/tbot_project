@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tgbot.iml" filepath="$PROJECT_DIR$/.idea/tgbot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tbot_project.iml" filepath="$PROJECT_DIR$/.idea/tbot_project.iml" />
     </modules>
   </component>
 </project>
