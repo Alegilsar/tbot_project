@@ -162,7 +162,11 @@ def get_text_messages(message):
     elif message.text == 'For a year':
         novosti(365, english_url, "0")
     elif message.text == "Разработки":
-        novosti(365,russian_url,402)
+        novosti(365,russian_url,400)
+    elif message.text == "Наука":
+        novosti(365,russian_url,399)
+    elif message.text == "Achievement":
+        novosti(365,english_url,401 )
 
 
 text_start = """
