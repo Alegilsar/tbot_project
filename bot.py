@@ -118,7 +118,7 @@ def get_text_messages(message):
         markup2.add(btnlng, btn10, btn11, btn12)
         bot.send_message(message.from_user.id, "Выберите категорию ", reply_markup=markup2)
 
-    elif message.text == 'Вернуться к выбору языка' or message.text =='Back to language choosing':
+    elif message.text == 'Вернуться к выбору языка' or message.text =='Back to language selection':
         start(message)
 
     elif message.text == 'Все новости факультета':
