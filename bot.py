@@ -85,12 +85,15 @@ def get_text_messages(message):
                 markup2.add(btnlng, btn3, btn5, btn6)
                 bot.send_message(message.from_user.id, "There are no news in this period", reply_markup=markup2)
             else:
+                print("here")
                 for i in get:
-                    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                    btn = types.KeyboardButton("To the main page")
-                    markup.add(btn)
-                    messag = str(i['datt']) + "\n" + " " + "\n" + i['title'] + "\n" + " " + "\n" + "Подробнее " + i[
-                        'link']
+                    # markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                    # btn = types.KeyboardButton("To the main page")
+                    # markup.add(btn)
+                    messag = str(i['datt']) + "\n" + " " + "\n" + i['title']
+                    markup = types.InlineKeyboardMarkup()
+                    btn_my_site = types.InlineKeyboardButton(text='More', url=i['link'])
+                    markup.add(btn_my_site)
                     bot.send_photo(message.from_user.id, i['photo'], messag, reply_markup=markup)
         else:
             if get == []:
@@ -98,7 +101,7 @@ def get_text_messages(message):
                 btn3 = types.KeyboardButton('За неделю')
                 btn5 = types.KeyboardButton('За месяц')
                 btn6 = types.KeyboardButton('За год')
-                btnlng = types.KeyboardButton('Back to language choosing')
+                btnlng = types.KeyboardButton('Back to language selection')
                 markup2.add(btnlng, btn3, btn5, btn6)
                 bot.send_message(message.from_user.id, "За это период новостей не было", reply_markup=markup2)
             else:
@@ -106,7 +109,10 @@ def get_text_messages(message):
                     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
                     btn = types.KeyboardButton('На главную страницу')
                     markup.add(btn)
-                    messag = str(i['datt']) + "\n" + " " + "\n" + i['title'] + "\n" + " " + "\n" + "Подробнее " + i['link']
+                    messag = str(i['datt']) + "\n" + " " + "\n" + i['title']
+                    markup = types.InlineKeyboardMarkup()
+                    btn_my_site = types.InlineKeyboardButton(text='Подробнее', url=i['link'])
+                    markup.add(btn_my_site)
                     bot.send_photo(message.from_user.id, i['photo'], messag, reply_markup=markup)
 
     if message.text == 'Русский' or message.text == "На главную страницу":
@@ -114,7 +120,7 @@ def get_text_messages(message):
         btn10 = types.KeyboardButton('Все новости факультета')
         btn11 = types.KeyboardButton('Наука')
         btn12 = types.KeyboardButton('Разработки')
-        btnlng = types.KeyboardButton('Back to language choosing')
+        btnlng = types.KeyboardButton('Back to language selection')
         markup2.add(btnlng, btn10, btn11, btn12)
         bot.send_message(message.from_user.id, "Выберите категорию ", reply_markup=markup2)
 
