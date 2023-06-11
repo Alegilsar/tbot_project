@@ -120,8 +120,11 @@ def get_text_messages(message):
         btn10 = types.KeyboardButton('Все новости факультета')
         btn11 = types.KeyboardButton('Наука')
         btn12 = types.KeyboardButton('Разработки')
+        btn13 = types.KeyboardButton('Достижения')
+        btn14 = types.KeyboardButton('Конференции')
+        btn15 = types.KeyboardButton('Возможности')
         btnlng = types.KeyboardButton('Back to language selection')
-        markup2.add(btnlng, btn10, btn11, btn12)
+        markup2.add(btnlng, btn10, btn11, btn12, btn13, btn14, btn15)
         bot.send_message(message.from_user.id, "Выберите категорию ", reply_markup=markup2)
 
     elif message.text == 'Вернуться к выбору языка' or message.text =='Back to language selection':
@@ -171,8 +174,22 @@ def get_text_messages(message):
         novosti(365,russian_url,400)
     elif message.text == "Наука":
         novosti(365,russian_url,399)
+    elif message.text == "Достижения":
+        novosti(365,russian_url,401)
+    elif message.text == "Конференции":
+        novosti(365,russian_url,1)
+    elif message.text == "Возможности":
+        novosti(365,russian_url,402)
     elif message.text == "Achievement":
-        novosti(365,english_url,401 )
+        novosti(365,english_url,401)
+    elif message.text == "Conference":
+        novosti(365,english_url,1)
+    elif message.text == "Inventions":
+        novosti(365,english_url,400)
+    elif message.text == "Ability":
+        novosti(365,english_url,402)
+    elif message.text == "Science":
+        novosti(365,english_url,399)
 
 
 text_start = """
