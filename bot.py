@@ -42,26 +42,27 @@ def news(d, url, value):
     news_list = soup.find_all('div', {'class': 'col-md-6 views-row'})
     site_utl='https://physics.itmo.ru'
     for news in news_list:
-        title = news.find('span').text
-        link = site_utl + news.find('a')['href']
-        datt = news.find('time')['datetime']
+        if news.find('span') is not None:
+            title = news.find('span').text
+            link = site_utl + news.find('a')['href']
+            datt = news.find('time')['datetime']
 
-        if "T" in datt:
+            if "T" in datt:
 
-            datt=datt.replace("T",' ')
-            datt = datt.replace("Z", '')
+                datt=datt.replace("T",' ')
+                datt = datt.replace("Z", '')
 
-        datt = datetime.datetime.strptime(datt, '%Y-%m-%d %H:%M:%S')
-        now = datetime.datetime.now()
-        deffer=datetime.timedelta(days= d)
-        photo = site_utl +  news.find('img')['src']
-        slovo = {}
-        if datt > (now - deffer):
-            slovo['title'] = title
-            slovo['link'] = link
-            slovo['photo'] = photo
-            slovo['datt'] = datt
-            spisok.append(slovo)
+            datt = datetime.datetime.strptime(datt, '%Y-%m-%d %H:%M:%S')
+            now = datetime.datetime.now()
+            deffer=datetime.timedelta(days= d)
+            photo = site_utl +  news.find('img')['src']
+            slovo = {}
+            if datt > (now - deffer):
+                slovo['title'] = title
+                slovo['link'] = link
+                slovo['photo'] = photo
+                slovo['datt'] = datt
+                spisok.append(slovo)
 
     return spisok
 
@@ -117,7 +118,14 @@ def get_text_messages(message):
 
     if message.text == 'Русский' or message.text == "На главную страницу":
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn10 = types.KeyboardButton('Все новости факультета 🗞')
+        btn10 = types.KeyboardButton('Новости факультета')
+        btnlng = types.KeyboardButton('🌎 Back to language selection')
+        markup2.add(btnlng, btn10)
+        bot.send_message(message.from_user.id, "Что вас интересует? ", reply_markup=markup2)
+
+    elif message.text == 'Новости факультета':
+        markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn10 = types.KeyboardButton('Все новости 🗞')
         btn11 = types.KeyboardButton('Наука 🧪')
         btn12 = types.KeyboardButton('Разработки 💡')
         btn13 = types.KeyboardButton('Достижения 😎')
@@ -130,7 +138,7 @@ def get_text_messages(message):
     elif message.text == '🌎 Вернуться к выбору языка' or message.text =='🌎 Back to language selection':
         start(message)
 
-    elif message.text == 'Все новости факультета 🗞':
+    elif message.text == 'Все новости 🗞':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn3 = types.KeyboardButton('За год')
         btn5 = types.KeyboardButton('За неделю')
@@ -145,6 +153,12 @@ def get_text_messages(message):
     elif message.text == 'За месяц':
         novosti(30, russian_url, "0")
     elif message.text == 'English' or message.text == 'To the main page':
+        markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn10 = types.KeyboardButton('News of the Faculty')
+        btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
+        markup2.add(btnlng, btn10)
+        bot.send_message(message.from_user.id, "Сhoose the category ", reply_markup=markup2)
+    elif message.text == 'News of the Faculty':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn10 = types.KeyboardButton('All news 🗞')
         btn11 = types.KeyboardButton('Achievement 😎')
@@ -238,5 +252,5 @@ text_start = """
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠻⠿⠉⠉⠉⠉⠉⠑⠋⠙⠻⡢⢖⡯⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
 """
 print(text_start)
-
-bot.polling(none_stop=True, interval=0)
+while True:
+    bot.polling(none_stop=True, interval=0)
