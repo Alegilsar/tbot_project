@@ -18,7 +18,7 @@ def start(message):
     btn1 = types.KeyboardButton('Русский')
     btn2 = types.KeyboardButton('English')
     markup.add(btn1,btn2)
-    bot.send_message(message.from_user.id, "Выберите язык/Choose your language", reply_markup=markup)
+    bot.send_message(message.from_user.id, "🌎 Выберите язык/Choose your language", reply_markup=markup)
 
 def categotia(url,value):
     url = str(url)
@@ -81,7 +81,7 @@ def get_text_messages(message):
                 btn3 = types.KeyboardButton('For a week')
                 btn5 = types.KeyboardButton('For a month')
                 btn6 = types.KeyboardButton('For a year')
-                btnlng = types.KeyboardButton('Вернуться к выбору языка')
+                btnlng = types.KeyboardButton('🌎 Back to language selection')
                 markup2.add(btnlng, btn3, btn5, btn6)
                 bot.send_message(message.from_user.id, "There are no news in this period", reply_markup=markup2)
             else:
@@ -101,7 +101,7 @@ def get_text_messages(message):
                 btn3 = types.KeyboardButton('За неделю')
                 btn5 = types.KeyboardButton('За месяц')
                 btn6 = types.KeyboardButton('За год')
-                btnlng = types.KeyboardButton('Back to language selection')
+                btnlng = types.KeyboardButton('🌎 Back to language selection')
                 markup2.add(btnlng, btn3, btn5, btn6)
                 bot.send_message(message.from_user.id, "За это период новостей не было", reply_markup=markup2)
             else:
@@ -117,25 +117,25 @@ def get_text_messages(message):
 
     if message.text == 'Русский' or message.text == "На главную страницу":
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn10 = types.KeyboardButton('Все новости факультета')
-        btn11 = types.KeyboardButton('Наука')
-        btn12 = types.KeyboardButton('Разработки')
-        btn13 = types.KeyboardButton('Достижения')
-        btn14 = types.KeyboardButton('Конференции')
-        btn15 = types.KeyboardButton('Возможности')
-        btnlng = types.KeyboardButton('Back to language selection')
+        btn10 = types.KeyboardButton('Все новости факультета 🗞')
+        btn11 = types.KeyboardButton('Наука 🧪')
+        btn12 = types.KeyboardButton('Разработки 💡')
+        btn13 = types.KeyboardButton('Достижения 😎')
+        btn14 = types.KeyboardButton('Конференции 👨‍💻👩‍💻')
+        btn15 = types.KeyboardButton('Возможности 🔬')
+        btnlng = types.KeyboardButton('🌎 Back to language selection')
         markup2.add(btnlng, btn10, btn11, btn12, btn13, btn14, btn15)
         bot.send_message(message.from_user.id, "Выберите категорию ", reply_markup=markup2)
 
-    elif message.text == 'Вернуться к выбору языка' or message.text =='Back to language selection':
+    elif message.text == '🌎 Вернуться к выбору языка' or message.text =='🌎 Back to language selection':
         start(message)
 
-    elif message.text == 'Все новости факультета':
+    elif message.text == 'Все новости факультета 🗞':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn3 = types.KeyboardButton('За год')
         btn5 = types.KeyboardButton('За неделю')
         btn6 = types.KeyboardButton('За месяц')
-        btnlng = types.KeyboardButton('Back to language choosing')
+        btnlng = types.KeyboardButton('🌎Back to language selection')
         markup2.add(btnlng, btn3, btn5, btn6)
         bot.send_message(message.from_user.id, "Выберите период времени ", reply_markup=markup2)
     elif message.text == 'За год':
@@ -146,21 +146,21 @@ def get_text_messages(message):
         novosti(30, russian_url, "0")
     elif message.text == 'English' or message.text == 'To the main page':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn10 = types.KeyboardButton('All news')
-        btn11 = types.KeyboardButton('Achievement')
-        btn12 = types.KeyboardButton('Conferences')
+        btn10 = types.KeyboardButton('All news 🗞')
+        btn11 = types.KeyboardButton('Achievement 😎')
+        btn12 = types.KeyboardButton('Conferences 👨‍💻👩‍💻')
         btn13 = types.KeyboardButton('Developments')
-        btn14 = types.KeyboardButton('Opportunities')
-        btn15 = types.KeyboardButton('Science')
-        btnlng = types.KeyboardButton('Вернуться к выбору языка')
-        markup2.add(btnlng, btn10, btn11, btn12,btn13,btn14,btn15)
+        btn14 = types.KeyboardButton('Opportunities 🔬')
+        btn15 = types.KeyboardButton('Science 🧪')
+        btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
+        markup2.add(btnlng, btn10, btn11, btn12, btn13, btn14, btn15)
         bot.send_message(message.from_user.id, "Сhoose the category ", reply_markup=markup2)
-    elif message.text == 'All news':
+    elif message.text == 'All news 🗞':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn3 = types.KeyboardButton('For a month')
         btn5 = types.KeyboardButton('For a week')
         btn6 = types.KeyboardButton('For a year')
-        btnlng = types.KeyboardButton('Вернуться к выбору языка')
+        btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
         markup2.add(btnlng, btn3, btn5, btn6)
         bot.send_message(message.from_user.id, "Choose the duration", reply_markup=markup2)
 
@@ -170,26 +170,27 @@ def get_text_messages(message):
         novosti(7, english_url, "0")
     elif message.text == 'For a year':
         novosti(365, english_url, "0")
-    elif message.text == "Разработки":
+    elif message.text == "Разработки 💡":
         novosti(365,russian_url,400)
-    elif message.text == "Наука":
+    elif message.text == "Наука 🧪":
         novosti(365,russian_url,399)
-    elif message.text == "Достижения":
+    elif message.text == "Достижения 😎":
         novosti(365,russian_url,401)
-    elif message.text == "Конференции":
+    elif message.text == "Конференции 👨‍💻👩‍💻":
         novosti(365,russian_url,1)
-    elif message.text == "Возможности":
+    elif message.text == "Возможности 🔬":
         novosti(365,russian_url,402)
-    elif message.text == "Achievement":
+    elif message.text == "Achievement 😎":
         novosti(365,english_url,401)
-    elif message.text == "Conference":
+    elif message.text == "Conferences 👨‍💻👩‍💻":
         novosti(365,english_url,1)
-    elif message.text == "Inventions":
-        novosti(365,english_url,400)
-    elif message.text == "Ability":
+    elif message.text == "Developments":
+        novosti(365,english_url, 400)
+    elif message.text == "Opportunities 🔬":
         novosti(365,english_url,402)
-    elif message.text == "Science":
+    elif message.text == "Science 🧪":
         novosti(365,english_url,399)
+
 
 
 text_start = """
