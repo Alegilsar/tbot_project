@@ -82,8 +82,9 @@ def get_text_messages(message):
                 btn3 = types.KeyboardButton('For a week')
                 btn5 = types.KeyboardButton('For a month')
                 btn6 = types.KeyboardButton('For a year')
+                btnback = types.KeyboardButton('Back')
                 btnlng = types.KeyboardButton('🌎 Back to language selection')
-                markup2.add(btnlng, btn3, btn5, btn6)
+                markup2.add(btnlng, btn3, btn5, btn6,btnback)
                 bot.send_message(message.from_user.id, "There are no news in this period", reply_markup=markup2)
             else:
                 print("here")
@@ -102,8 +103,9 @@ def get_text_messages(message):
                 btn3 = types.KeyboardButton('За неделю')
                 btn5 = types.KeyboardButton('За месяц')
                 btn6 = types.KeyboardButton('За год')
+                btnback = types.KeyboardButton('Назад')
                 btnlng = types.KeyboardButton('🌎 Back to language selection')
-                markup2.add(btnlng, btn3, btn5, btn6)
+                markup2.add(btnlng, btn3, btn5, btn6, btnback)
                 bot.send_message(message.from_user.id, "За это период новостей не было", reply_markup=markup2)
             else:
                 for i in get:
@@ -123,7 +125,7 @@ def get_text_messages(message):
         markup2.add(btnlng, btn10)
         bot.send_message(message.from_user.id, "Что вас интересует? ", reply_markup=markup2)
 
-    elif message.text == 'Новости факультета':
+    elif message.text == 'Новости факультета' or message.text == 'Назад':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn10 = types.KeyboardButton('Все новости 🗞')
         btn11 = types.KeyboardButton('Наука 🧪')
@@ -143,8 +145,9 @@ def get_text_messages(message):
         btn3 = types.KeyboardButton('За год')
         btn5 = types.KeyboardButton('За неделю')
         btn6 = types.KeyboardButton('За месяц')
-        btnlng = types.KeyboardButton('🌎Back to language selection')
-        markup2.add(btnlng, btn3, btn5, btn6)
+        btnback = types.KeyboardButton('Назад')
+        btnlng = types.KeyboardButton('🌎 Back to language selection')
+        markup2.add(btnlng, btn3, btn5, btn6, btnback)
         bot.send_message(message.from_user.id, "Выберите период времени ", reply_markup=markup2)
     elif message.text == 'За год':
         novosti(365, russian_url, "0")
@@ -152,13 +155,13 @@ def get_text_messages(message):
         novosti(7, russian_url, "0")
     elif message.text == 'За месяц':
         novosti(30, russian_url, "0")
-    elif message.text == 'English' or message.text == 'To the main page':
+    elif message.text == 'English':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn10 = types.KeyboardButton('News of the Faculty')
         btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
         markup2.add(btnlng, btn10)
         bot.send_message(message.from_user.id, "Сhoose the category ", reply_markup=markup2)
-    elif message.text == 'News of the Faculty':
+    elif message.text == 'News of the Faculty' or message.text == 'Back':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn10 = types.KeyboardButton('All news 🗞')
         btn11 = types.KeyboardButton('Achievement 😎')
@@ -174,8 +177,9 @@ def get_text_messages(message):
         btn3 = types.KeyboardButton('For a month')
         btn5 = types.KeyboardButton('For a week')
         btn6 = types.KeyboardButton('For a year')
+        btnback = types.KeyboardButton('Back')
         btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
-        markup2.add(btnlng, btn3, btn5, btn6)
+        markup2.add(btnlng, btn3, btn5, btn6,btnback)
         bot.send_message(message.from_user.id, "Choose the duration", reply_markup=markup2)
 
     elif message.text == 'For a month':
