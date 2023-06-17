@@ -65,14 +65,17 @@ def news(d, url, value):
                 spisok.append(slovo)
 
     return spisok
-
-
-
+duration = {'За месяц':(30, russian_url, "0"),'За неделю':(7, russian_url, "0"),'За год':(365, russian_url, "0"), 'For a month':(31, english_url, "0"),'For a week':(7, english_url, "0"),
+            'For a year':(365, english_url, "0")}
+categories = {"Разработки 💡":(365, russian_url, 400),"Наука 🧪":(365, russian_url, 399),"Достижения 😎":(365, russian_url, 401),"Конференции 👨‍💻👩‍💻":(365, russian_url, 1),"Возможности 🔬":(365, russian_url, 402),
+              "Achievement 😎":(365, english_url, 401),"Conferences 👨‍💻👩‍💻":(365, english_url, 1),"Developments":(365, english_url, 400),"Opportunities 🔬":(365, english_url, 402),"Science 🧪":(365, english_url, 399)}
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     print("я тут")
     global russian_url
     global english_url
+    global duration
+    global categories
     def novosti(x, url, value):
         get = news(x, url, value)
         # /\global english_url
@@ -147,14 +150,8 @@ def get_text_messages(message):
         btn6 = types.KeyboardButton('За месяц')
         btnback = types.KeyboardButton('Назад')
         btnlng = types.KeyboardButton('🌎 Back to language selection')
-        markup2.add(btnlng, btn3, btn5, btn6, btnback)
+        markup2.add(btnlng, btn5, btn6, btn3, btnback)
         bot.send_message(message.from_user.id, "Выберите период времени ", reply_markup=markup2)
-    elif message.text == 'За год':
-        novosti(365, russian_url, "0")
-    elif message.text == 'За неделю':
-        novosti(7, russian_url, "0")
-    elif message.text == 'За месяц':
-        novosti(30, russian_url, "0")
     elif message.text == 'English':
         markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn10 = types.KeyboardButton('News of the Faculty')
@@ -179,35 +176,13 @@ def get_text_messages(message):
         btn6 = types.KeyboardButton('For a year')
         btnback = types.KeyboardButton('Back')
         btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
-        markup2.add(btnlng, btn3, btn5, btn6,btnback)
+        markup2.add(btnlng, btn5, btn3, btn6,btnback)
         bot.send_message(message.from_user.id, "Choose the duration", reply_markup=markup2)
+    elif message.text in duration:
+        novosti(*duration[message.text])
+    elif message.text in categories:
+        novosti(*categories[message.text])
 
-    elif message.text == 'For a month':
-        novosti(31, english_url, "0")
-    elif message.text == 'For a week':
-        novosti(7, english_url, "0")
-    elif message.text == 'For a year':
-        novosti(365, english_url, "0")
-    elif message.text == "Разработки 💡":
-        novosti(365,russian_url,400)
-    elif message.text == "Наука 🧪":
-        novosti(365,russian_url,399)
-    elif message.text == "Достижения 😎":
-        novosti(365,russian_url,401)
-    elif message.text == "Конференции 👨‍💻👩‍💻":
-        novosti(365,russian_url,1)
-    elif message.text == "Возможности 🔬":
-        novosti(365,russian_url,402)
-    elif message.text == "Achievement 😎":
-        novosti(365,english_url,401)
-    elif message.text == "Conferences 👨‍💻👩‍💻":
-        novosti(365,english_url,1)
-    elif message.text == "Developments":
-        novosti(365,english_url, 400)
-    elif message.text == "Opportunities 🔬":
-        novosti(365,english_url,402)
-    elif message.text == "Science 🧪":
-        novosti(365,english_url,399)
 
 
 
