@@ -68,7 +68,7 @@ def news(d, url, value):
 duration = {'За месяц':(30, russian_url, "0"),'За неделю':(7, russian_url, "0"),'За год':(365, russian_url, "0"), 'For a month':(31, english_url, "0"),'For a week':(7, english_url, "0"),
             'For a year':(365, english_url, "0")}
 categories = {"Разработки 💡":(365, russian_url, 400),"Наука 🧪":(365, russian_url, 399),"Достижения 😎":(365, russian_url, 401),"Конференции 👨‍💻👩‍💻":(365, russian_url, 1),"Возможности 🔬":(365, russian_url, 402),
-              "Achievement 😎":(365, english_url, 401),"Conferences 👨‍💻👩‍💻":(365, english_url, 1),"Developments":(365, english_url, 400),"Opportunities 🔬":(365, english_url, 402),"Science 🧪":(365, english_url, 399)}
+              "Achievement 😎":(365, english_url, 401),"Conferences 👨‍💻👩‍💻":(365, english_url, 1),"Developments 💡":(365, english_url, 400),"Opportunities 🔬":(365, english_url, 402),"Science 🧪":(365, english_url, 399)}
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     print("я тут")
@@ -163,7 +163,7 @@ def get_text_messages(message):
         btn10 = types.KeyboardButton('All news 🗞')
         btn11 = types.KeyboardButton('Achievement 😎')
         btn12 = types.KeyboardButton('Conferences 👨‍💻👩‍💻')
-        btn13 = types.KeyboardButton('Developments')
+        btn13 = types.KeyboardButton('Developments 💡')
         btn14 = types.KeyboardButton('Opportunities 🔬')
         btn15 = types.KeyboardButton('Science 🧪')
         btnlng = types.KeyboardButton('🌎 Вернуться к выбору языка')
